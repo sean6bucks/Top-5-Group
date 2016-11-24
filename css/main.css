@@ -13,8 +13,10 @@
 html {
     color: #222;
     font-size: 1em;
-    line-height: 1.4;
 }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
 
 /*
  * Remove text-shadow in selection highlight:
@@ -80,6 +82,16 @@ textarea {
     resize: vertical;
 }
 
+body { 
+    min-width: 100%; 
+    background: #fff;
+    font-family: 'Noto Sans', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
+    font-size: 16px; 
+    line-height: 1.25; 
+    color: #000000; 
+    -webkit-font-smoothing: antialiased; 
+}
+
 /* ==========================================================================
    Browser Upgrade Prompt
    ========================================================================== */
@@ -101,14 +113,90 @@ textarea {
     margin: 0 auto;
 }
 
+header {
+    width: 100%;
+    background-color: black;
+    background-image: url(../img/header-bg.jpg);
+    background-size: 100% auto;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    padding: 75% 0 0 0;
+}
 
+.qr-code {
+    width: 90%;
+    display: block;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 15px auto;
+}
 
+.white-text,
+.red-text {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
 
+.white-text p {
+    padding: 0 5px;
+    font-size: 16px;
+    color: #fff;
+    margin: 0;
+}
+.red-text * {
+    color: #ff0000;
+    margin: 0;
+}
+.red-text h3 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1em;
+}
+.red-text h6 {
+    margin-top: 5px;
+    font-size: 16px;
+}
 
+.color-bar {
+    width: 100%;
+    margin-bottom: -10px;
+}
 
+.section {
+    width: 100%;
+    padding: 20px 0;
+}
 
-@media only screen and (max-width: 480px) {
-    /* Style adjustments for viewports that meet the condition */
+.bold-block,
+.info-block {
+    padding: 0 4%;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.bold-block {
+    font-weight: 700;
+}
+
+.contact-block {
+    font-size: 14px;
+    text-align: center;
+}
+.contact-block a {
+    color: #1099bc;
+}
+
+.footer-img {
+    width: 100%;
+    height: auto;
+    margin: 30px 0 -10px 0;
+}
+
+@media only screen and (min-width: 360px) {
+    .red-text h3 {
+        font-size: 24px;
+    }
 }
 
 
