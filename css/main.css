@@ -116,14 +116,24 @@ body {
 header {
     width: 100%;
     background-color: black;
-    background-image: url(../img/header-bg.jpg);
-    background-size: 100% auto;
-    background-position: 0 0;
-    background-repeat: no-repeat;
     padding: 75% 0 0 0;
+    position: relative;
+}
+header * {
+    position: relative;
+}
+
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
 }
 
 .qr-code {
+    position: relative;
     width: 90%;
     display: block;
     max-width: 200px;
