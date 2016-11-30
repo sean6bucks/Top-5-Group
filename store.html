@@ -1,0 +1,73 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TOP 5 - FRI 12/2 7PM</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+		
+		<div id="store-page" class="wrapper">
+			<h1 class="site-title">TOP 5 Poster Store</h5>
+			<div class="quantity-shade show">
+				<div class="quantity-wrapper">
+					<div class="quantity">
+						<h4 class="quantity-text">Number of Posters Purchased</h4>
+						<div id="quantityForm">
+							<input type="number" id="quantityInput">
+							<button class="submit-btn" id="submitQuantity">Choose Posters</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="info-wrapper">
+				<div class="customer-info clearfix">
+					<h3 class="centered">Shipping Information</h3>
+					<div class="data-field clearfix">
+						<h4 class="data-label">Name - </h4>
+						<input type="text" id="contactName" class="data-input required"/>
+					</div>
+					<div class="data-field clearfix">
+						<h4 class="data-label">Email - </h4>
+						<input type="text" id="contactEmail" class="data-input required"/>
+					</div>
+					<div class="data-field textarea clearfix">
+						<h4 class="data-label">Mailing Address - </h4>
+						<textarea type="text" rows="3" id="contactAddress" class="data-input required"/></textarea>
+					</div>
+					<div class="data-field clearfix">
+						<h4 class="data-label">WeChat - </h4>
+						<input type="text" id="contactWechat" class="data-input"/>
+					</div>
+					<div class="data-field clearfix">
+						<h4 class="data-label">Phone # - </h4>
+						<input type="text" id="contactPhone" class="data-input"/>
+					</div>
+					<button class="submit-btn" id="submitOrder">Submit</button>
+				</div>
+				<div class="success-message clearfix">
+					<h2>SUCCESSFULLY ORDERED</h2>
+					<h6>Thank you for your support!</h6>
+					<button class="submit-btn" id="submitReset">Place New Order</button>
+				</div>
+			</div>
+		</div>
+
+    	<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.0.min.js"><\/script>')</script>
+        <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script>window.emailjs || document.write('<script src="js/vendor/email.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
