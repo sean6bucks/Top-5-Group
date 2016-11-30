@@ -305,17 +305,22 @@ header * {
 	max-width: 200px;
 	margin: 10px auto;
 	padding: 10px 20px;
-	background: #666;
-	border: 1px solid #666;
+	background: #D8DBDB;
+	border: 1px solid #333;
 	border-radius: 3px;
-	color: #fff;
+	color: #333;
 	outline: none;
 }
-
-.quantity button:focus {
-	background-color: #fff;
-	color: #666;
+.submit-btn:focus {
+	border-color: #000;
+	background-color: #666;
+	color: #000;
 }
+
+/*.quantity button:focus {
+	background-color: #666;
+	color: #fff;
+}*/
 
 .store {
 	display: none;
@@ -487,10 +492,10 @@ header * {
 	background: #fff;
 	color: #666;
 }
-.success-message button:focus {
+/*.success-message button:focus {
 	color: #666;
 	background-color: #666;
-}
+}*/
 
 .success-message.display {
 	opacity: 1;
