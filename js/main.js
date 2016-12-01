@@ -3,7 +3,7 @@
 $(document).ready(function(){
 	if ( window.location.pathname.indexOf('store') > -1 ) {
 		var quantity = 0,
-			artists = ['beryl', 'sean', 'darren', 'patti'],
+			artists = ['beryl', 'sean', 'darren', 'otto', 'patti'],
 			order = {};
 
 		var artist_info = {
@@ -11,24 +11,24 @@ $(document).ready(function(){
 				name: 'Beryl Chung',
 				pieces: [
 					{
-						name: '',
-						tag: 'hifi'
-					},
-					{
-						name: '',
-						tag: 'pikachu'
-					},
-					{
-						name: '',
+						name: 'Bruce Lee',
 						tag: 'bruce'
 					},
 					{
-						name: '',
+						name: 'Cassandra Cain',
 						tag: 'batgirl'
 					},
 					{
-						name: '',
+						name: 'Pikachu',
+						tag: 'pikachu'
+					},
+					{
+						name: 'Wong Kar Wai',
 						tag: 'wkw'
+					},
+					{
+						name: 'High Fidelity',
+						tag: 'hifi'
 					},
 				]
 			},
@@ -61,23 +61,23 @@ $(document).ready(function(){
 				name: 'Darren Crawforth',
 				pieces: [
 					{
-						name: '',
-						tag: 'iggy'
-					},
-					{
-						name: '',
+						name: 'The Hand of Jonny Greenwood',
 						tag: 'johnny'
 					},
 					{
-						name: '',
-						tag: 'keiran'
+						name: 'The Hips of Iggy Pop',
+						tag: 'iggy'
 					},
 					{
-						name: '',
+						name: 'The Heart of Leonard Cohen',
 						tag: 'leonard'
 					},
 					{
-						name: '',
+						name: 'The Brain of Kieran Hebden',
+						tag: 'keiran'
+					},
+					{
+						name: 'The Feet of Lee "Scratch" Perry',
 						tag: 'scratch'
 					},
 				]
@@ -86,49 +86,50 @@ $(document).ready(function(){
 				name: 'Patti Ruan',
 				pieces: [
 					{
-						name: '',
-						tag: 'bath'
-					},
-					{
-						name: '',
-						tag: 'doors'
-					},
-					{
-						name: '',
+						name: 'All About My Mother',
 						tag: 'mother'
 					},
 					{
-						name: '',
-						tag: 'hal'
-					},
-					{
-						name: '',
+						name: 'Live with Spongebob',
 						tag: 'spongebob'
 					},
+					{
+						name: 'Bath with DragonBall',
+						tag: 'bath'
+					},
+					{
+						name: 'Always Love the Doors',
+						tag: 'doors'
+					},
+					{
+						name: 'Everyone is HAL9000',
+						tag: 'hal'
+					},
+					
 				]
 			},
 			otto: {
-				name: 'Otto',
+				name: 'Otto Som',
 				pieces: [
 					{
-						name: '',
-						tag: ''
+						name: 'BIG LOVE',
+						tag: 'love'
 					},
 					{
-						name: '',
-						tag: ''
+						name: 'DREAM OF SODOM',
+						tag: 'sodom'
 					},
 					{
-						name: '',
-						tag: ''
+						name: 'TALK TO MY PUSSY',
+						tag: 'pussy'
 					},
 					{
-						name: '',
-						tag: ''
+						name: 'THE HEAVENLY STAREAII',
+						tag: 'heaven'
 					},
 					{
-						name: '',
-						tag: ''
+						name: 'ALL SHE HAS LEFT',
+						tag: 'gold'
 					},
 				]
 			}
@@ -146,7 +147,7 @@ $(document).ready(function(){
 
 			var previews = $('<div></div>').addClass('store-wrapper clearfix');
 			pieces.forEach(function(piece){
-				var itemEl = "<div class='store-item'><img data-name='"+info.name+"' data-piece='"+piece.name+"' src='img/previews/"+artist+"_"+piece.tag+".jpg'/><h6 class='title'>"+piece.name+"</h6></div>";
+				var itemEl = "<div class='store-item' data-name='"+info.name+"' data-piece='"+piece.name+"'><img src='img/previews/"+artist+"_"+piece.tag+".jpg'/><h6 class='title'>"+piece.name+"</h6><input type='number'></div>";
 				$(previews).append(itemEl);
 			});
 
@@ -166,12 +167,22 @@ $(document).ready(function(){
 			}
 		});
 
+		var selectedQuantity;
 		$('.store-item img').click(function(){
-			if( $(this).hasClass('selected') ){
-				$(this).removeClass('selected');
-			} else if ( $('.store-item .selected').length < quantity ) {
-				$(this).addClass('selected');
-				if($('.store-item .selected').length==quantity) {
+			selectedQuantity = 0;
+			var parent = $(this).parent();
+			$('.store-item.selected input').each(function(){
+				selectedQuantity += parseInt($(this).val());
+			});
+			if( parent.hasClass('selected') ) {
+				parent.removeClass('selected');
+				selectedQuantity -= parseInt(parent.children('input').val());
+				parent.children('input').val(0);
+			} else if ( selectedQuantity < quantity ) {
+				parent.addClass('selected');
+				parent.children('input').val(1);
+				selectedQuantity += 1
+				if( selectedQuantity==quantity ) {
 					$('#submitChoices').addClass('active');
 				}
 			}
@@ -180,18 +191,29 @@ $(document).ready(function(){
 		$('#submitChoices').click(function(){
 			if( !$(this).hasClass('active') ) return;
 
+			selectedQuantity = 0;
+			$('.store-item.selected input').each(function(){
+				selectedQuantity += parseInt($(this).val());
+			});
+
+			if( selectedQuantity > quantity ) {
+				alert('Too many posters selected');
+				return;
+			}
+
 			order.items = [];
-			$('img.selected').each(function(){
+			$('.store-item.selected').each(function(){
 				order.items.push({
 					artist: $(this).data('name'),
 					title: $(this).data('piece'),
-					quantity: 1
+					quantity: parseInt($(this).children('input').val())
 				});
 			});
 
 			console.log(order);
 
 			$('.info-wrapper').addClass('show');
+			window.scrollTo( 0, 0 );
 			$('.customer-info').addClass('display');
 			$('.store').removeClass('show');
 		});
@@ -226,6 +248,7 @@ $(document).ready(function(){
 				.then(function(response) {
 					console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
 					$('.customer-info').removeClass('display');
+					window.scrollTo(0,0);
 					$('.success-message').addClass('display');
 					$('#submitOrder').html("Submit");
 					// reset form values
@@ -244,7 +267,8 @@ $(document).ready(function(){
 		$('#submitReset').click(function(){
 			quantity = 0;
 			order = {};
-			$('img.selected').removeClass('selected');
+			$('.store-item').removeClass('selected');
+			$('.store-item').children('input').val(0);
 			$('.success-message').removeClass('display');
 			$('.quantity-shade').addClass('show');
 			$('.info-wrapper').removeClass('show');
