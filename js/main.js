@@ -154,6 +154,15 @@ $(document).ready(function(){
 			$(store).append(previews);
 			$('#catelog').append(store);
 		});
+
+		if ( tongdao ) {
+			$('.store-item').click(function(){
+				tongdao.track('poster_viewed', {
+					artist: $(this).data('name'),
+					poster_name: $(this).data('piece')
+				});
+			});
+		}
 	}
 
 	if ( window.location.pathname.indexOf('store') > -1 ) {
@@ -300,7 +309,6 @@ $(document).ready(function(){
 	}
 
 	if( lightbox ) {
-		console.log('lightbox');
 		lightbox.option({
 			resizeDuration: 200,
 			imageFadeDuration: 200,
