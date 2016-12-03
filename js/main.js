@@ -300,10 +300,13 @@ $(document).ready(function(){
 	}
 
 	if( lightbox ) {
+		console.log('lightbox');
 		lightbox.option({
 			resizeDuration: 200,
 			imageFadeDuration: 200,
 			alwaysShowNavOnTouchDevices: true,
+			wrapAround: true,
+			disableScrolling: true
 	    })
 	}
 
