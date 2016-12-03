@@ -152,7 +152,6 @@ $(document).ready(function(){
 			});
 
 			$(store).append(previews);
-
 			$('#catelog').append(store);
 		});
 	}
