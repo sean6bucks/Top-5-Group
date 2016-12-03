@@ -234,6 +234,10 @@ header * {
 }
 
 .contact-block {
+	text-align: center;
+}
+
+.contact-block {
     font-size: 14px;
     text-align: center;
 }
@@ -241,11 +245,16 @@ header * {
     color: #1099bc;
 }
 
+.contact-text {
+	display: block;
+}
+
 .wechat-img {
 	height: auto;
 	margin: 10px auto;
 	display: block;
 }
+
 header .wechat-img {
 	width: 100px;
 }
@@ -613,6 +622,16 @@ footer .wechat-img {
 	.navigation-list li a {
 		font-size: 18px;
 		padding: 0 10px;
+	}
+
+	.contact-text {
+		display: inline-block;
+	}
+
+	.wechat-img {
+		vertical-align: top;
+		margin-left: 20px;
+		display: inline-block;
 	}
 
 	#store-page.wrapper {

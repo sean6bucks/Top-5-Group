@@ -147,7 +147,7 @@ $(document).ready(function(){
 
 			var previews = $('<div></div>').addClass('store-wrapper clearfix');
 			pieces.forEach(function(piece){
-				var itemEl = "<div class='store-item' data-name='"+info.name+"' data-piece='"+piece.name+"'><a href='img/previews/"+artist+"_"+piece.tag+".jpg' data-lightbox='"+artist+"-gallery' data-title='"+piece.name+"'><img src='img/previews/"+artist+"_"+piece.tag+".jpg'/></a><h6 class='title'>"+piece.name+"</h6><input type='number'></div>";
+				var itemEl = "<div class='store-item' data-name='"+info.name+"' data-piece='"+piece.name+"'><a href='img/previews/"+artist+"_"+piece.tag+".jpg' data-lightbox='"+artist+"-gallery' data-title='"+piece.name+"'><img src='img/previews/"+artist+"_"+piece.tag+"_thumb.jpg'/></a><h6 class='title'>"+piece.name+"</h6><input type='number'></div>";
 				$(previews).append(itemEl);
 			});
 
