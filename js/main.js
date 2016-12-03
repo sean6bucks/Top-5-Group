@@ -135,7 +135,7 @@ $(document).ready(function(){
 		}
 	};
 
-	if ( window.location.pathname=='/' || window.location.pathname.indexOf('index')>-1 ) {
+	if ( window.location.pathname=='/top5/' || window.location.pathname.indexOf('index')>-1 ) {
 
 		artists.forEach(function(artist){
 			var info = artist_info[artist];
