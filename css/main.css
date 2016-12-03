@@ -128,7 +128,6 @@ body {
 
 header {
     width: 100%;
-    max-width: 1000px;
     padding: 15px;
     margin-top: 15px;
     position: relative;
@@ -251,8 +250,7 @@ header .wechat-img {
 	width: 100px;
 }
 footer .wechat-img {
-	width: 60%;
-	max-width: 350px;
+	width: 250px;
 }
 .footer-img {
     width: 100%;
