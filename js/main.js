@@ -1,140 +1,164 @@
 'use strict'
 
 $(document).ready(function(){
-	if ( window.location.pathname.indexOf('store') > -1 ) {
-		var quantity = 0,
+
+	var quantity = 0,
 			artists = ['beryl', 'sean', 'darren', 'otto', 'patti'],
 			order = {};
 
-		var artist_info = {
-			beryl: {
-				name: 'Beryl Chung',
-				pieces: [
-					{
-						name: 'Bruce Lee',
-						tag: 'bruce'
-					},
-					{
-						name: 'Cassandra Cain',
-						tag: 'batgirl'
-					},
-					{
-						name: 'Pikachu',
-						tag: 'pikachu'
-					},
-					{
-						name: 'Wong Kar Wai',
-						tag: 'wkw'
-					},
-					{
-						name: 'High Fidelity',
-						tag: 'hifi'
-					},
-				]
-			},
-			sean: {
-				name: 'Sean Kiefer',
-				pieces: [
-					{
-						name: 'Super Green',
-						tag: 'fifth'
-					},
-					{
-						name: 'Now, Plain Zero!',
-						tag: 'action'
-					},
-					{
-						name: 'Save the Clocktower',
-						tag: 'bttf'
-					},
-					{
-						name: 'ABACABB',
-						tag: 'nes'
-					},
-					{
-						name: 'The Velour Fog',
-						tag: 'future'
-					}
-				]
-			},
-			darren: {
-				name: 'Darren Crawforth',
-				pieces: [
-					{
-						name: 'The Hand of Jonny Greenwood',
-						tag: 'johnny'
-					},
-					{
-						name: 'The Hips of Iggy Pop',
-						tag: 'iggy'
-					},
-					{
-						name: 'The Heart of Leonard Cohen',
-						tag: 'leonard'
-					},
-					{
-						name: 'The Brain of Kieran Hebden',
-						tag: 'keiran'
-					},
-					{
-						name: 'The Feet of Lee "Scratch" Perry',
-						tag: 'scratch'
-					},
-				]
-			},
-			patti: {
-				name: 'Patti Ruan',
-				pieces: [
-					{
-						name: 'All About My Mother',
-						tag: 'mother'
-					},
-					{
-						name: 'Live with Spongebob',
-						tag: 'spongebob'
-					},
-					{
-						name: 'Bath with DragonBall',
-						tag: 'bath'
-					},
-					{
-						name: 'Always Love the Doors',
-						tag: 'doors'
-					},
-					{
-						name: 'Everyone is HAL9000',
-						tag: 'hal'
-					},
-					
-				]
-			},
-			otto: {
-				name: 'Otto Som',
-				pieces: [
-					{
-						name: 'BIG LOVE',
-						tag: 'love'
-					},
-					{
-						name: 'DREAM OF SODOM',
-						tag: 'sodom'
-					},
-					{
-						name: 'TALK TO MY PUSSY',
-						tag: 'pussy'
-					},
-					{
-						name: 'THE HEAVENLY STAREAII',
-						tag: 'heaven'
-					},
-					{
-						name: 'ALL SHE HAS LEFT',
-						tag: 'gold'
-					},
-				]
-			}
-		};
+	var artist_info = {
+		beryl: {
+			name: 'Beryl Chung',
+			pieces: [
+				{
+					name: 'Bruce Lee',
+					tag: 'bruce'
+				},
+				{
+					name: 'Cassandra Cain',
+					tag: 'batgirl'
+				},
+				{
+					name: 'Pikachu',
+					tag: 'pikachu'
+				},
+				{
+					name: 'Wong Kar Wai',
+					tag: 'wkw'
+				},
+				{
+					name: 'High Fidelity',
+					tag: 'hifi'
+				},
+			]
+		},
+		sean: {
+			name: 'Sean Kiefer',
+			pieces: [
+				{
+					name: 'Super Green',
+					tag: 'fifth'
+				},
+				{
+					name: 'Now, Plain Zero!',
+					tag: 'action'
+				},
+				{
+					name: 'Save the Clocktower',
+					tag: 'bttf'
+				},
+				{
+					name: 'ABACABB',
+					tag: 'nes'
+				},
+				{
+					name: 'The Velour Fog',
+					tag: 'future'
+				}
+			]
+		},
+		darren: {
+			name: 'Darren Crawforth',
+			pieces: [
+				{
+					name: 'The Hand of Jonny Greenwood',
+					tag: 'johnny'
+				},
+				{
+					name: 'The Hips of Iggy Pop',
+					tag: 'iggy'
+				},
+				{
+					name: 'The Heart of Leonard Cohen',
+					tag: 'leonard'
+				},
+				{
+					name: 'The Brain of Kieran Hebden',
+					tag: 'keiran'
+				},
+				{
+					name: 'The Feet of Lee "Scratch" Perry',
+					tag: 'scratch'
+				},
+			]
+		},
+		patti: {
+			name: 'Patti Ruan',
+			pieces: [
+				{
+					name: 'All About My Mother',
+					tag: 'mother'
+				},
+				{
+					name: 'Live with Spongebob',
+					tag: 'spongebob'
+				},
+				{
+					name: 'Bath with DragonBall',
+					tag: 'bath'
+				},
+				{
+					name: 'Always Love the Doors',
+					tag: 'doors'
+				},
+				{
+					name: 'Everyone is HAL9000',
+					tag: 'hal'
+				},
+				
+			]
+		},
+		otto: {
+			name: 'Otto Som',
+			pieces: [
+				{
+					name: 'BIG LOVE',
+					tag: 'love'
+				},
+				{
+					name: 'DREAM OF SODOM',
+					tag: 'sodom'
+				},
+				{
+					name: 'TALK TO MY PUSSY',
+					tag: 'pussy'
+				},
+				{
+					name: 'THE HEAVENLY STAREAII',
+					tag: 'heaven'
+				},
+				{
+					name: 'ALL SHE HAS LEFT',
+					tag: 'gold'
+				},
+			]
+		}
+	};
 
+	if ( window.location.pathname=='/' || window.location.pathname.indexOf('index')>-1 ) {
+
+		artists.forEach(function(artist){
+			var info = artist_info[artist];
+			var pieces = info.pieces;
+
+			var store = $('<div class="store show" id="'+artist+'"></div>');
+
+			$(store).append("<h3 class='store-title'>"+info.name+"</h3>");
+
+			var previews = $('<div></div>').addClass('store-wrapper clearfix');
+			pieces.forEach(function(piece){
+				var itemEl = "<div class='store-item' data-name='"+info.name+"' data-piece='"+piece.name+"'><a href='img/previews/"+artist+"_"+piece.tag+".jpg' data-lightbox='"+artist+"-gallery' data-title='"+piece.name+"'><img src='img/previews/"+artist+"_"+piece.tag+".jpg'/></a><h6 class='title'>"+piece.name+"</h6><input type='number'></div>";
+				$(previews).append(itemEl);
+			});
+
+			$(store).append(previews);
+
+			$('#catelog').append(store);
+		});
+	}
+
+	if ( window.location.pathname.indexOf('store') > -1 ) {
+		console.log('yaya');
 		emailjs.init("user_17IFxUh62EclEap0rJrrN");
 
 		artists.forEach(function(artist){
@@ -274,7 +298,14 @@ $(document).ready(function(){
 			$('.info-wrapper').removeClass('show');
 
 		});
-
-
 	}
+
+	if( lightbox ) {
+		lightbox.option({
+			resizeDuration: 200,
+			imageFadeDuration: 200,
+			alwaysShowNavOnTouchDevices: true,
+	    })
+	}
+
 });
