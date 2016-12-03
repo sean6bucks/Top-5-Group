@@ -628,7 +628,7 @@ footer .wechat-img {
 		display: inline-block;
 	}
 
-	.wechat-img {
+	header .wechat-img {
 		vertical-align: top;
 		margin-left: 20px;
 		display: inline-block;
