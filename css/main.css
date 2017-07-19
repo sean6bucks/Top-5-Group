@@ -105,6 +105,16 @@ body {
     -webkit-font-smoothing: antialiased; 
 }
 
+h1 {
+	font-size: 42px;
+	font-family: 'Roboto-Light', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
+	margin: 0;
+	margin-bottom: 50px;
+}
+
+.text-center {
+	text-align: center;
+}
 /* ==========================================================================
    Browser Upgrade Prompt
    ========================================================================== */
@@ -129,7 +139,7 @@ body {
 header {
     width: 100%;
     padding: 15px;
-    margin-top: 15px;
+    margin-top: 75px;
     position: relative;
 }
 header * {
@@ -145,20 +155,33 @@ header * {
     z-index: 0;
 }
 .navigation-list {
+	margin: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
 	list-style: none;
 	width: 100%;
 	padding: 0;
 	text-align: center;
+	height: 50px;
+	background-color: #fff;
+	border-bottom: 1px solid #000;
+	z-index: 50;
 }
 .navigation-list li {
-	display: inline-block;
-}
-.navigation-list li a {
-	font-size: 14px;
-	padding: 0 5px;
+	float: left;
+	width: 50%;
+	font-size: 20px;
+	line-height: 50px;
 	text-align: center;
-	color: #666;
-	text-decoration: underline;
+	display: inline-block;
+	cursor: pointer;
+	-webkit-transition: all .2s ease;
+	transition: all .2s ease;
+}
+.navigation-list li.active {
+	background-color: #000;
+	color: #fff;
 }
 
 .qr-code {
@@ -205,6 +228,32 @@ header * {
 .section {
     width: 100%;
     padding: 20px 0;
+}
+
+
+.flyer-set {
+	display: block;
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto 50px auto;
+}
+
+.flyer {
+	display: inline-block;
+	float: left;
+	width: 48%;
+	height: auto;
+	margin: 0 1%;
+}
+.flyer img {
+	width: 100%;
+	height: auto;
+}
+
+.location-map img {
+	width: 100%;
+	height: auto;
+	max-width: 800px;
 }
 
 .bold-block,

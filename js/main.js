@@ -137,6 +137,18 @@ $(document).ready(function(){
 
 	if ( window.location.pathname=='/top5/' || window.location.pathname.indexOf('index')>-1 ) {
 
+		$('.top_nav').click(function(event){
+			if ( $(event.target).hasClass('active') ) return;
+			$( '.top_nav' ).removeClass('active');
+			$(event.target).addClass('active');
+
+			var id = event.target.id.replace(/_nav/g, '');
+			console.log($('#' + id));
+			var scrollTop = $('#' + id).offset().top - 100;
+			console.log( scrollTop );
+			$('body').animate({ scrollTop: scrollTop }, 200);
+		});
+
 		artists.forEach(function(artist){
 			var info = artist_info[artist];
 			var pieces = info.pieces;
@@ -152,7 +164,7 @@ $(document).ready(function(){
 			});
 
 			$(store).append(previews);
-			$('#catelog').append(store);
+			$('#series1').append(store);
 		});
 
 		if ( tongdao ) {
