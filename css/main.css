@@ -388,21 +388,33 @@ footer .wechat-img {
 }
 
 .submit-btn {
-	font-family: 'Roboto-Medium';
+	position: fixed;
+	bottom: 20px;
+	right: 40px;
+	font-family: 'Roboto-Medium', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
 	display: block;
 	max-width: 200px;
-	margin: 10px auto;
 	padding: 10px 20px;
-	background: #D8DBDB;
+	background: #FFF;
 	border: 1px solid #333;
 	border-radius: 3px;
 	color: #333;
 	outline: none;
+	pointer-events: none;
+	opacity: .5;
+	-webkit-transition: opacity .2s ease;
+	transition: opacity .2s ease;
 }
 .submit-btn:focus {
 	border-color: #000;
 	background-color: #666;
 	color: #000;
+}
+
+.submit-btn.active {
+	opacity: 1;
+	cursor: pointer;
+	pointer-events: auto;
 }
 
 /*.quantity button:focus {
@@ -539,7 +551,7 @@ footer .wechat-img {
 .data-field h4 {
 	margin: 0 0 15px 0;
 	font-size: 24px;
-	font-family: 'Roboto-Light';
+	font-family: 'Roboto-Light', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
 	color: #666;
 }
 .data-field .data-input {
@@ -586,7 +598,7 @@ footer .wechat-img {
 	margin: 0 0 40px 0;
 	text-align: center;
 	font-style: italic;
-	font-family: 'Roboto-Medium';
+	font-family: 'Roboto-Medium', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
 }
 .success-message button {
 	border: 1px solid #666;
