@@ -216,23 +216,23 @@ $(document).ready(function(){
 					pieces: [
 						{
 							name: 'Jack Kirby',
-							tag: 'Orange'
+							tag: 'orange'
 						},
 						{
 							name: 'Stephen King',
-							tag: 'Red'
+							tag: 'red'
 						},
 						{
 							name: 'Brian Wilson',
-							tag: 'Turquoise'
+							tag: 'turquoise'
 						},
 						{
 							name: 'Larry David',
-							tag: 'Yellow'
+							tag: 'yellow'
 						},
 						{
 							name: 'John Carpenter',
-							tag: 'Blue'
+							tag: 'blue'
 						}
 					]
 				}

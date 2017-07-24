@@ -216,23 +216,23 @@ $( document ).ready( function() {
 					pieces: [
 						{
 							name: 'Jack Kirby',
-							tag: 'Orange'
+							tag: 'orange'
 						},
 						{
 							name: 'Stephen King',
-							tag: 'Red'
+							tag: 'red'
 						},
 						{
 							name: 'Brian Wilson',
-							tag: 'Turquoise'
+							tag: 'turquoise'
 						},
 						{
 							name: 'Larry David',
-							tag: 'Yellow'
+							tag: 'yellow'
 						},
 						{
 							name: 'John Carpenter',
-							tag: 'Blue'
+							tag: 'blue'
 						}
 					]
 				}
@@ -380,24 +380,6 @@ $( document ).ready( function() {
 	// TODO: DISABLE OTTO POSTERS FROM STORE
 
 	var series = seriesSets[0];
-	// seriesSets.forEach( function( series ) {
-		series.artists.forEach( function( key ) {
-			var artist = series.artist_info[ key ];
-			var pieces = artist.pieces;
-
-			var store = $('<div class="store show" id="' + key + '"></div>');
-			$(store).append("<h3 class='store-title'>" + artist.name + "</h3>");
-
-			var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
-			pieces.forEach( function( piece ) {
-				var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><a href='img/" + series.tag + "/" + key + "/" + piece.tag + ".jpg' data-lightbox='" + key + "-gallery' data-title='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + "_thumb.jpg'/></a><h6 class='title'>" + piece.name + "</h6><input type='number'></div>";
-				$( previews ).append( itemEl );
-			});
-
-			$( store ).append( previews );
-			$( '#' + series.tag ).append( store );
-		});
-	// });
 
 	series.artists.forEach( function( key ) {
 		var artist = series.artist_info[ key ];
@@ -409,12 +391,11 @@ $( document ).ready( function() {
 
 		var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
 		pieces.forEach( function( piece ) {
-			var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + ".jpg'/><h6 class='title'>" + piece.name + "</h6><input type='number'></div>";
+			var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + "_thumb.jpg'/><h6 class='title'>" + piece.name + "</h6><input type='number'></div>";
 			$( previews ).append( itemEl );
 		});
 
 		$( store ).append( previews );
-
 		$( '#stores' ).append( store );
 	});
 
