@@ -1,6 +1,6 @@
 'use strict'
 
-$(document).ready(function(){
+$( document ).ready( function() {
 
 	var quantity = 0,
 		order = {};
@@ -9,7 +9,7 @@ $(document).ready(function(){
 		{
 			name: 'Series 2',
 			tag: 'series2',
-			artists: ['beryl', 'sean', 'yulong', 'duofen', 'alessandro', 'yanzhen', 'garrett', 'zoe', 'jesse' ],
+			artists: [ 'beryl', 'sean', 'yulong', 'duofen', 'alessandro', 'yanzhen', 'garrett', 'zoe', 'jesse' ],
 			artist_info: {
 				beryl: {
 					name: 'Beryl Chung',
@@ -374,26 +374,18 @@ $(document).ready(function(){
 		}
 	];
 
-	$('.top_nav').click(function(event){
-		if ( $(event.target).hasClass('active') ) return;
-		$( '.top_nav' ).removeClass('active');
-		$(event.target).addClass('active');
+	emailjs.init("user_17IFxUh62EclEap0rJrrN");
 
-		var id = event.target.id.replace(/_nav/g, '');
-		console.log( $('#' + id) );
-		var scrollTop = $('#' + id).offset().top - 100;
-		console.log( scrollTop );
-		$('body').animate({ scrollTop: scrollTop }, 200);
-	});
+	// EVENTUALLY ADD SEPERATE PAGE FOR SERIES 1 PURCHASES
+	// TODO: DISABLE OTTO POSTERS FROM STORE
 
-	// DISABLE SERIES 2 FROM MAIN PAGE UNTIL POST-SHOW
-	var series = seriesSets[1];
+	var series = seriesSets[0];
 	// seriesSets.forEach( function( series ) {
 		series.artists.forEach( function( key ) {
 			var artist = series.artist_info[ key ];
 			var pieces = artist.pieces;
 
-			var store = $( '<div class="store show" id="' + key + '"></div>' );
+			var store = $('<div class="store show" id="' + key + '"></div>');
 			$(store).append("<h3 class='store-title'>" + artist.name + "</h3>");
 
 			var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
@@ -407,23 +399,151 @@ $(document).ready(function(){
 		});
 	// });
 
-	if ( tongdao ) {
-		$('.store-item').click(function(){
-			tongdao.track('poster_viewed', {
+	series.artists.forEach( function( key ) {
+		var artist = series.artist_info[ key ];
+		var pieces = artist.pieces;
+
+		var store = $( '<div class="store" id="' + key + '"></div>' );
+
+		$( store ).append( "<h3 class='store-title'>" + artist.name+"</h3>" );
+
+		var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
+		pieces.forEach( function( piece ) {
+			var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + ".jpg'/><h6 class='title'>" + piece.name + "</h6><input type='number'></div>";
+			$( previews ).append( itemEl );
+		});
+
+		$( store ).append( previews );
+
+		$( '#stores' ).append( store );
+	});
+
+	$( '#stores' ).append( '<button class="submit-btn" id="submitChoices">Check Out</button>' );
+
+	$('#submitQuantity').click( function( event ) {
+		console.log('click');
+		console.log('here');
+		quantity = document.getElementById('quantityInput').value;
+		if ( quantity > 0 ) {
+			$('.quantity-shade').removeClass('show');
+			$('#stores').addClass('show');
+			$('#quantityInput').val("");
+			console.log('here');
+		}
+	});
+
+	var selectedQuantity;
+	$('.store-item img').click( function( event ) {
+		selectedQuantity = 0;
+		var parent = $(this).parent();
+		$('.store-item.selected input').each(function() {
+			selectedQuantity += parseInt( $(this).val() );
+		});
+		if( parent.hasClass('selected') ) {
+			parent.removeClass('selected');
+			selectedQuantity -= parseInt(parent.children('input').val());
+			parent.children('input').val(0);
+		} else if ( selectedQuantity < quantity ) {
+			parent.addClass('selected');
+			parent.children('input').val(1);
+			selectedQuantity += 1
+			if ( selectedQuantity == quantity ) {
+				$('#submitChoices').addClass('active');
+			}
+		}
+	});
+
+	$('#submitChoices').click(function(){
+		if( !$(this).hasClass('active') ) return;
+
+		selectedQuantity = 0;
+		$('.store-item.selected input').each(function(){
+			selectedQuantity += parseInt($(this).val());
+		});
+
+		if( selectedQuantity > quantity ) {
+			alert('Too many posters selected');
+			return;
+		}
+
+		order.items = [];
+		$('.store-item.selected').each(function(){
+			order.items.push({
 				artist: $(this).data('name'),
-				poster_name: $(this).data('piece')
+				title: $(this).data('piece'),
+				quantity: parseInt($(this).children('input').val())
 			});
 		});
-	}
 
-	if( window.lightbox ) {
-		lightbox.option({
-			resizeDuration: 200,
-			imageFadeDuration: 200,
-			alwaysShowNavOnTouchDevices: true,
-			wrapAround: true,
-			disableScrolling: true
-	    })
-	}
+		$('.info-wrapper').addClass('show');
+		window.scrollTo( 0, 0 );
+		$('.customer-info').addClass('display');
+		$('.store').removeClass('show');
+	});
+
+	$('#backButton').click( function() {
+		$('.store').addClass('show');
+		$('.info-wrapper').removeClass('show');
+		$('.custom-info').removeClass('display');
+		$('#stores').scrollTop(0);
+	});
+
+	$('#submitOrder').click( function() {
+		// check required fields
+		var flag = false;
+
+		$('.required').each(function(){
+			if( !$(this).val() ) {
+				$(this).addClass('has-error');
+				flag = true;
+			}
+		});
+		
+		if (flag) return;
+
+		order.contact = {
+			name: $('#contactName').val(),
+			email: $('#contactEmail').val(),
+			address: $('#contactAddress').val(),
+			wechat: $('#contactWechat').val(),
+			phone: $('#contactPhone').val()
+		};
+
+		console.log(order);
+
+		var loaderEl = '<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
+		$('#submitOrder').html(loaderEl);
+
+		emailjs.send("outlook", "top5_order", order)
+			.then(function(response) {
+				console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+				$('.customer-info').removeClass('display');
+				window.scrollTo(0,0);
+				$('.success-message').addClass('display');
+				$('#submitOrder').html("Submit");
+				// reset form values
+				$('#contactName').val("");
+				$('#contactEmail').val("");
+				$('#contactAddress').val("");
+				$('#contactWechat').val("");
+				$('#contactPhone').val("");
+			}, function(err) {
+				console.log("FAILED. error=", err);
+				$('#submitOrder').html("Submit");
+				alert('Order Failed: check connection and try again');
+			});
+	});
+
+	$('#submitReset').click(function(){
+		quantity = 0;
+		order = {};
+		$('#stores').scrollTop(0);
+		$('.store-item').removeClass('selected');
+		$('.store-item').children('input').val(0);
+		$('.success-message').removeClass('display');
+		$('.quantity-shade').addClass('show');
+		$('.info-wrapper').removeClass('show');
+	});
 
 });
+
