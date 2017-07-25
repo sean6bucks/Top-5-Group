@@ -403,14 +403,11 @@ $( document ).ready( function() {
 	$( '#stores' ).append( '<button class="submit-btn" id="submitChoices">Check Out</button>' );
 
 	$('#submitQuantity').click( function( event ) {
-		console.log('click');
-		console.log('here');
 		quantity = document.getElementById('quantityInput').value;
 		if ( quantity > 0 ) {
 			$('.quantity-shade').removeClass('show');
 			$('#stores').addClass('show');
 			$('#quantityInput').val("");
-			console.log('here');
 		}
 	});
 
@@ -439,17 +436,21 @@ $( document ).ready( function() {
 		if( !$(this).hasClass('active') ) return;
 
 		selectedQuantity = 0;
-		$('.store-item.selected input').each(function(){
+		$( '.store-item.selected input' ).each(function(){
 			selectedQuantity += parseInt($(this).val());
 		});
 
-		if( selectedQuantity > quantity ) {
-			alert('Too many posters selected');
+		if ( selectedQuantity > quantity ) {
+			if ( $('.store-item.selected') ) {
+				var topScroll = $('.store-item.selected').offset().top;
+				$( 'body' ).animate( { scrollTop: topScroll - 40 }, 200 );
+				setTimeout( function(){ alert( 'Too many posters selected' ); }, 400 );
+			}
 			return;
 		}
 
 		newOrder.items = [];
-		$('.store-item.selected').each(function(){
+		$( '.store-item.selected' ).each( function() {
 			newOrder.items.push({
 				artist: $(this).data('name'),
 				title: $(this).data('piece'),
@@ -459,14 +460,14 @@ $( document ).ready( function() {
 
 		$('.info-wrapper').addClass('show');
 		window.scrollTo( 0, 0 );
-		$('.customer-info').addClass('display');
-		$('.store').removeClass('show');
+		$('.customer-info').addClass('show');
+		$('#stores').removeClass('show');
 	});
 
 	$('#backButton').click( function() {
-		$('.store').addClass('show');
+		$('#stores').addClass('show');
 		$('.info-wrapper').removeClass('show');
-		$('.custom-info').removeClass('display');
+		$('.customer-info').removeClass('show');
 		$('#stores').scrollTop(0);
 	});
 
@@ -515,9 +516,9 @@ $( document ).ready( function() {
 					localStorage.stashedOrders = '';
 
 				// show success message
-				$('.customer-info').removeClass('display');
+				$('.customer-info').removeClass('show');
 				window.scrollTo( 0, 0 );
-				$('.success-message').addClass('display');
+				$('.success-message').addClass('show');
 				$('#submitOrder').html("Submit");
 				// reset form values
 				$('#contactName').val("");
@@ -598,7 +599,7 @@ $( document ).ready( function() {
 		$('#stores').scrollTop(0);
 		$('.store-item').removeClass('selected');
 		$('.store-item').children('input').val(0);
-		$('.success-message').removeClass('display');
+		$('.success-message').removeClass('show');
 		$('.quantity-shade').addClass('show');
 		$('.info-wrapper').removeClass('show');
 	});

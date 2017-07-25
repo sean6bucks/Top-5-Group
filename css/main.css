@@ -319,12 +319,10 @@ footer .wechat-img {
 /*STORE*/
 
 #store-page {
-	position: absolute;
+	position: static;
 	top: 0;
 	left: 0;
-	bottom: 0;
 	width: 100%;
-	overflow: hidden;
 }
 
 .quantity-shade {
@@ -410,6 +408,9 @@ footer .wechat-img {
 	width: 100px;
 	margin: 10px auto;
 	color: #FFF;
+	background: transparent;
+	border: none;
+	outline: none;
 }
 
 /*.quantity button:focus {
@@ -424,9 +425,13 @@ footer .wechat-img {
 	bottom: 0;
 	width: 100%;
 	overflow: hidden;
+	visibility: hidden;
 	background: linear-gradient(15deg, #ED681C, #41EAD4);
 }
 #stores.show {
+	position: static;
+	width: 100%;
+	visibility: visible;
 	overflow: auto;
 }
 
@@ -476,6 +481,7 @@ footer .wechat-img {
 }
 
 .store-item .title {
+	height: 30px;
 	font-size: 12px;
 	color: #FFF;
 	margin: 5px 10px 5px;
@@ -504,8 +510,8 @@ footer .wechat-img {
 	visibility: hidden;
 	z-index: 105;
 	background: linear-gradient(15deg, #152445, #CC2936);
-	transition: all .3s ease;
 	-webkit-transition: all .2s ease;
+	transition: all .3s ease;
 }
 
 .info-wrapper.show {
@@ -519,15 +525,18 @@ footer .wechat-img {
 	position: absolute;
 	top: 0;
 	left: 0;
+	bottom: 0;
 	width: 100%;
 	opacity: 0;
 	visibility: hidden;
 	color: #FFF;
-	transition: all .2s ease;
+	overflow: hidden;
 	-webkit-transition: all .2s ease;
+	transition: all .2s ease;
 }
 
-.customer-info.display {
+.customer-info.show {
+	bottom: inherit;
 	opacity: 1;
 	visibility: visible;
 	overflow: auto;
@@ -575,7 +584,8 @@ footer .wechat-img {
 
 .success-message {
 	top: 50%;
-    transform: translateY(-50%);
+	-webkit-transform: translateY( -50% );
+    transform: translateY( -50% );
 }
 
 .success-message h2 {
@@ -602,7 +612,7 @@ footer .wechat-img {
 	background-color: #666;
 }*/
 
-.success-message.display {
+.success-message.show {
 	opacity: 1;
 	visibility: visible;
 	z-index: 200;
