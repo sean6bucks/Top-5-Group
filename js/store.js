@@ -3,7 +3,8 @@
 $( document ).ready( function() {
 
 	var quantity = 0,
-		order = {};
+		newOrder = {},
+		orders = [];
 
 	var seriesSets = [
 		{
@@ -447,9 +448,9 @@ $( document ).ready( function() {
 			return;
 		}
 
-		order.items = [];
+		newOrder.items = [];
 		$('.store-item.selected').each(function(){
-			order.items.push({
+			newOrder.items.push({
 				artist: $(this).data('name'),
 				title: $(this).data('piece'),
 				quantity: parseInt($(this).children('input').val())
@@ -488,7 +489,7 @@ $( document ).ready( function() {
 			return;
 		}
 
-		order.contact = {
+		newOrder.contact = {
 			name: $('#contactName').val(),
 			email: $('#contactEmail').val(),
 			address: $('#contactAddress').val(),
@@ -496,20 +497,26 @@ $( document ).ready( function() {
 			phone: $('#contactPhone').val()
 		};
 
-		console.log(order);
+		console.log( newOrder );
 
 		var loaderEl = '<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
-		$('#submitOrder').html(loaderEl);
+		$( '#submitOrder' ).html( loaderEl );
 
-		var sendEmail = function() {
-			console.log( 'Sending Email: Try ' + submitTries );
-
+		var sendOrders = function() {
+			// ORDER FUNCTIONS -------
 			var completeOrder = function(response) {
 				if ( response ) {
 					console.log("SUCCESS. status=%d, text=%s", response.status, response.text );
 				}
+				// store any unsent messages in local
+				if ( stashedOrders && stashedOrders.length )
+					localStorage.stashedOrders = JSON.stringify( stashedOrders );
+				else
+					localStorage.stashedOrders = '';
+
+				// show success message
 				$('.customer-info').removeClass('display');
-				window.scrollTo(0,0);
+				window.scrollTo( 0, 0 );
 				$('.success-message').addClass('display');
 				$('#submitOrder').html("Submit");
 				// reset form values
@@ -520,44 +527,74 @@ $( document ).ready( function() {
 				$('#contactPhone').val("");
 
 				// reset order object
-				order = {};
+				newOrder = {};
 				quantity = 0;
 
 				submitting = false;
+				console.log( localStorage )
 			};
 
-			var stashOrder = function() {
-				var orders = [];
-				orders.push( order );
-				localStorage.t5_stashedOrders = JSON.stringify( orders );
-				completeOrder({ text: 'Order saved in Local Storage' });
-				console.log( localStorage );
+			var stashOrder = function( order ) {
+				stashedOrders.push( order );
+				orders.splice( orders.length - 1, 1 );
+
+				if ( orders && orders.length ) {
+					sendEmail( orders[ orders.length - 1 ] );
+					submitTries = 0;
+				} else {
+					completeOrder({ text: 'Order saved in Local Storage' });
+				}
 			};
 
-			emailjs.send( "outlook", "top5_order", order )
+			var sendEmail = function( order ) {
+				emailjs.send( "outlook", "top5_order", order )
 				.then(
 					function( response ) {
-						completeOrder(response);
+						orders.splice( orders.length - 1, 1 );
+						if ( orders && orders.length ) {
+							sendEmail( orders[ orders.length - 1 ] );
+							submitTries = 0;
+						} else {
+							completeOrder( response );
+						}
 					}, 
 					function(err) {
 						console.log("FAILED. error=", err);
 						submitTries++;
+						// If less than twice, try email again
 						if ( submitTries < 2 ) {
-							sendEmail();
+							sendEmail( order );
+						// else stash message in local and move on
 						} else {
-							stashOrder();
+							stashOrder( order );
 						}
 					}
 				);
+			}
+
+			// check for unsent local orders
+			var stashedOrders = [];
+			if ( localStorage.stashedOrders ) {
+				stashedOrders = JSON.parse( localStorage.stashedOrders );
+			}
+			// if stashed add to orders array
+			stashedOrders.forEach( function( order ) { orders.push( order ); } );
+			stashedOrders = [];
+			// add newOrder to array of orders
+			orders.push( newOrder );
+
+			if ( orders && orders.length ) {
+				// send last order in array and begin send loop
+				sendEmail( orders[ orders.length - 1 ] );
+			}
 		};
 
-
-		sendEmail();
+		sendOrders();
 	});
 
 	$('#submitReset').click(function(){
 		quantity = 0;
-		order = {};
+		newOrder = {};
 		$('#stores').scrollTop(0);
 		$('.store-item').removeClass('selected');
 		$('.store-item').children('input').val(0);
