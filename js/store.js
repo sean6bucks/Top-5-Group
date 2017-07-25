@@ -400,7 +400,7 @@ $( document ).ready( function() {
 		$( '#stores' ).append( store );
 	});
 
-	$( '#stores' ).append( '<button class="submit-btn" id="submitChoices">Check Out</button>' );
+	$( '#stores' ).append( '<div class="footer-buttons"><button class="submit-btn" id="submitChoices">Check Out</button></div>' );
 
 	$('#submitQuantity').click( function( event ) {
 		quantity = document.getElementById('quantityInput').value;

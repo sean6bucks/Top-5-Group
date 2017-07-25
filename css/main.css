@@ -337,13 +337,13 @@ footer .wechat-img {
 	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	opacity: 0;
-	visibility: hidden;
+	display: none;
 	transition: all .2s ease;
 	-webkit-transition: all .2s ease;
 	z-index: 100;
 }
 .quantity-shade.show {
-	visibility: visible;
+	display: block;
 	opacity: 1;
 }
 
@@ -425,13 +425,13 @@ footer .wechat-img {
 	bottom: 0;
 	width: 100%;
 	overflow: hidden;
-	visibility: hidden;
-	background: linear-gradient(15deg, #ED681C, #41EAD4);
+	display: none;
+	background: linear-gradient(15deg, #152445, #41EAD4);
 }
 #stores.show {
 	position: static;
 	width: 100%;
-	visibility: visible;
+	display: block;
 	overflow: auto;
 }
 
@@ -500,6 +500,14 @@ footer .wechat-img {
 	visibility: visible;
 }
 
+.footer-buttons {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 82px;
+	background: rgba(21,36,69, 0.5);
+}
+
 .info-wrapper {
 	position: absolute;
 	top: 0;
@@ -507,7 +515,7 @@ footer .wechat-img {
 	bottom: 0;
 	width: 100%;
 	opacity: 0;
-	visibility: hidden;
+	display: none;
 	z-index: 105;
 	background: linear-gradient(15deg, #152445, #CC2936);
 	-webkit-transition: all .2s ease;
@@ -515,7 +523,7 @@ footer .wechat-img {
 }
 
 .info-wrapper.show {
-	visibility: visible;
+	display: block;
 	opacity: 1;
 	overflow: auto;
 }
@@ -524,13 +532,16 @@ footer .wechat-img {
 .success-message {
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: 50%;
 	bottom: 0;
 	width: 100%;
+	max-width: 600px;
 	opacity: 0;
-	visibility: hidden;
+	display: none;
 	color: #FFF;
 	overflow: hidden;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
 	-webkit-transition: all .2s ease;
 	transition: all .2s ease;
 }
@@ -538,7 +549,7 @@ footer .wechat-img {
 .customer-info.show {
 	bottom: inherit;
 	opacity: 1;
-	visibility: visible;
+	display: block;
 	overflow: auto;
 }
 .customer-info h3 {
@@ -614,7 +625,7 @@ footer .wechat-img {
 
 .success-message.show {
 	opacity: 1;
-	visibility: visible;
+	display: block;
 	z-index: 200;
 }
 
@@ -711,23 +722,11 @@ footer .wechat-img {
 		font-size: 24px;
 		margin: 10px 24px;
 	}
-
-	.customer-info,
-	.success-message {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate( -50%, -50% );
-	}
 	
 	.customer-info h3 {
 		font-size: 40px;
 	}
 
-	.data-field {
-		float: left;
-		width: 50%;
-	}
 }
 
 
