@@ -434,7 +434,7 @@ $( document ).ready( function() {
 		}
 	});
 
-	$('#submitChoices').click(function(){
+	$( '#submitChoices' ).click( function() {
 		if( !$(this).hasClass('active') ) return;
 
 		selectedQuantity = 0;
@@ -469,18 +469,24 @@ $( document ).ready( function() {
 		$('#stores').scrollTop(0);
 	});
 
-	$('#submitOrder').click( function() {
+	var submitting = false;
+	$( '#submitOrder' ).click( function() {
+		if ( submitting ) return;
+		submitting = true;
+		var submitTries = 0;
+
 		// check required fields
 		var flag = false;
-
 		$('.required').each(function(){
 			if( !$(this).val() ) {
 				$(this).addClass('has-error');
 				flag = true;
 			}
 		});
-		
-		if (flag) return;
+		if ( flag ) {
+			submitting = false;
+			return;
+		}
 
 		order.contact = {
 			name: $('#contactName').val(),
@@ -495,9 +501,13 @@ $( document ).ready( function() {
 		var loaderEl = '<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
 		$('#submitOrder').html(loaderEl);
 
-		emailjs.send("outlook", "top5_order", order)
-			.then(function(response) {
-				console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+		var sendEmail = function() {
+			console.log( 'Sending Email: Try ' + submitTries );
+
+			var completeOrder = function(response) {
+				if ( response ) {
+					console.log("SUCCESS. status=%d, text=%s", response.status, response.text );
+				}
 				$('.customer-info').removeClass('display');
 				window.scrollTo(0,0);
 				$('.success-message').addClass('display');
@@ -508,11 +518,41 @@ $( document ).ready( function() {
 				$('#contactAddress').val("");
 				$('#contactWechat').val("");
 				$('#contactPhone').val("");
-			}, function(err) {
-				console.log("FAILED. error=", err);
-				$('#submitOrder').html("Submit");
-				alert('Order Failed: check connection and try again');
-			});
+
+				// reset order object
+				order = {};
+				quantity = 0;
+
+				submitting = false;
+			};
+
+			var stashOrder = function() {
+				var orders = [];
+				orders.push( order );
+				localStorage.t5_stashedOrders = JSON.stringify( orders );
+				completeOrder({ text: 'Order saved in Local Storage' });
+				console.log( localStorage );
+			};
+
+			emailjs.send( "outlook", "top5_order", order )
+				.then(
+					function( response ) {
+						completeOrder(response);
+					}, 
+					function(err) {
+						console.log("FAILED. error=", err);
+						submitTries++;
+						if ( submitTries < 2 ) {
+							sendEmail();
+						} else {
+							stashOrder();
+						}
+					}
+				);
+		};
+
+
+		sendEmail();
 	});
 
 	$('#submitReset').click(function(){
