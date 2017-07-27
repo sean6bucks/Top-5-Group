@@ -374,56 +374,56 @@ $(document).ready(function(){
 		}
 	];
 
-	$('.top_nav').click(function(event){
-		if ( $(event.target).hasClass('active') ) return;
-		$( '.top_nav' ).removeClass('active');
-		$(event.target).addClass('active');
+	// $('.top_nav').click(function(event){
+	// 	if ( $(event.target).hasClass('active') ) return;
+	// 	$( '.top_nav' ).removeClass('active');
+	// 	$(event.target).addClass('active');
 
-		var id = event.target.id.replace(/_nav/g, '');
-		console.log( $('#' + id) );
-		var scrollTop = $('#' + id).offset().top - 100;
-		console.log( scrollTop );
-		$('body').animate({ scrollTop: scrollTop }, 200);
-	});
-
-	// DISABLE SERIES 2 FROM MAIN PAGE UNTIL POST-SHOW
-	var series = seriesSets[1];
-	// seriesSets.forEach( function( series ) {
-		series.artists.forEach( function( key ) {
-			var artist = series.artist_info[ key ];
-			var pieces = artist.pieces;
-
-			var store = $( '<div class="store show" id="' + key + '"></div>' );
-			$(store).append("<h3 class='store-title'>" + artist.name + "</h3>");
-
-			var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
-			pieces.forEach( function( piece ) {
-				var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><a href='img/" + series.tag + "/" + key + "/" + piece.tag + ".jpg' data-lightbox='" + key + "-gallery' data-title='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + "_thumb.jpg'/></a><h6 class='title'>" + piece.name + "</h6><input type='number'></div>";
-				$( previews ).append( itemEl );
-			});
-
-			$( store ).append( previews );
-			$( '#' + series.tag ).append( store );
-		});
+	// 	var id = event.target.id.replace(/_nav/g, '');
+	// 	console.log( $('#' + id) );
+	// 	var scrollTop = $('#' + id).offset().top - 100;
+	// 	console.log( scrollTop );
+	// 	$('body').animate({ scrollTop: scrollTop }, 200);
 	// });
 
-	if ( tongdao ) {
-		$('.store-item').click(function(){
-			tongdao.track('poster_viewed', {
-				artist: $(this).data('name'),
-				poster_name: $(this).data('piece')
-			});
-		});
-	}
+	// // DISABLE SERIES 2 FROM MAIN PAGE UNTIL POST-SHOW
+	// var series = seriesSets[1];
+	// // seriesSets.forEach( function( series ) {
+	// 	series.artists.forEach( function( key ) {
+	// 		var artist = series.artist_info[ key ];
+	// 		var pieces = artist.pieces;
 
-	if( window.lightbox ) {
-		lightbox.option({
-			resizeDuration: 200,
-			imageFadeDuration: 200,
-			alwaysShowNavOnTouchDevices: true,
-			wrapAround: true,
-			disableScrolling: true
-	    })
-	}
+	// 		var store = $( '<div class="store show" id="' + key + '"></div>' );
+	// 		$(store).append("<h3 class='store-title'>" + artist.name + "</h3>");
+
+	// 		var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
+	// 		pieces.forEach( function( piece ) {
+	// 			var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><a href='img/" + series.tag + "/" + key + "/" + piece.tag + ".jpg' data-lightbox='" + key + "-gallery' data-title='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + "_thumb.jpg'/></a><h6 class='title'>" + piece.name + "</h6><input type='number'></div>";
+	// 			$( previews ).append( itemEl );
+	// 		});
+
+	// 		$( store ).append( previews );
+	// 		$( '#' + series.tag ).append( store );
+	// 	});
+	// // });
+
+	// if ( tongdao ) {
+	// 	$('.store-item').click(function(){
+	// 		tongdao.track('poster_viewed', {
+	// 			artist: $(this).data('name'),
+	// 			poster_name: $(this).data('piece')
+	// 		});
+	// 	});
+	// }
+
+	// if( window.lightbox ) {
+	// 	lightbox.option({
+	// 		resizeDuration: 200,
+	// 		imageFadeDuration: 200,
+	// 		alwaysShowNavOnTouchDevices: true,
+	// 		wrapAround: true,
+	// 		disableScrolling: true
+	//     })
+	// }
 
 });
