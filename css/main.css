@@ -6,6 +6,28 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+#purchasePoster {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 999;
+	background-color: #000;
+}
+#purchasePoster img {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	width: auto;
+	-webkit-transform: translate( -50%, -50% );
+	transform: translate( -50%, -50% );
+}
+
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
