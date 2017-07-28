@@ -9,6 +9,7 @@ $(document).ready(function(){
 		{
 			name: 'Series 2',
 			tag: 'series2',
+			colors: [ '#ffd304', '#f7893a', '#ce2738', '#152445', '#47d6d6' ],
 			artists: ['beryl', 'sean', 'yulong', 'duofen', 'alessandro', 'yanzhen', 'garrett', 'zoe', 'jesse' ],
 			artist_info: {
 				beryl: {
@@ -40,7 +41,7 @@ $(document).ready(function(){
 					name: 'Sean Kiefer',
 					pieces: [
 						{
-							name: 'Y\'all Know About Killin\'?',
+							name: "Y'all Know About Killin'?",
 							tag: 'platoon'
 						},
 						{
@@ -56,7 +57,7 @@ $(document).ready(function(){
 							tag: 'maximum'
 						},
 						{
-							name: 'I\'ll Swallow Your Soul',
+							name: "I'll Swallow Your Soul",
 							tag: 'evil_dead'
 						}
 					]
@@ -242,6 +243,7 @@ $(document).ready(function(){
 		{
 			name: 'Series 1',
 			tag: 'series1',
+			colors: [ '#ffda00', '#ec242e', '#169cc2', '#603256', '#d3184d' ],
 			artists: ['beryl', 'sean', 'darren', 'otto', 'patti'],
 			artist_info: {
 				beryl: {
@@ -374,56 +376,66 @@ $(document).ready(function(){
 		}
 	];
 
-	// $('.top_nav').click(function(event){
-	// 	if ( $(event.target).hasClass('active') ) return;
-	// 	$( '.top_nav' ).removeClass('active');
-	// 	$(event.target).addClass('active');
+	$('.top_nav').click(function(event){
+		if ( $(event.target).hasClass('active') ) return;
+		$( '.top_nav' ).removeClass('active');
+		$(event.target).addClass('active');
 
-	// 	var id = event.target.id.replace(/_nav/g, '');
-	// 	console.log( $('#' + id) );
-	// 	var scrollTop = $('#' + id).offset().top - 100;
-	// 	console.log( scrollTop );
-	// 	$('body').animate({ scrollTop: scrollTop }, 200);
-	// });
+		var id = event.target.id.replace(/_nav/g, '');
+		console.log( $('#' + id) );
+		var scrollTop = $('#' + id).offset().top - 20;
+		console.log( scrollTop );
+		$('body').animate({ scrollTop: scrollTop }, 200);
+	});
 
-	// // DISABLE SERIES 2 FROM MAIN PAGE UNTIL POST-SHOW
-	// var series = seriesSets[1];
-	// // seriesSets.forEach( function( series ) {
-	// 	series.artists.forEach( function( key ) {
-	// 		var artist = series.artist_info[ key ];
-	// 		var pieces = artist.pieces;
+	// DISABLE SERIES 2 FROM MAIN PAGE UNTIL POST-SHOW
+	var series = seriesSets[1];
+	seriesSets.forEach( function( series ) {
 
-	// 		var store = $( '<div class="store show" id="' + key + '"></div>' );
-	// 		$(store).append("<h3 class='store-title'>" + artist.name + "</h3>");
+		var colorBar = $( '<div></div>' ).addClass( 'color-bar' );
+		series.colors.forEach( function( color ) {
+			colorBar.append('<div class="color-block" style="background: ' + color + '"></div>')
+		});
+		$( '#' + series.tag ).append( colorBar );
+		$( '#' + series.tag ).append('<h1 class="text-center">' + series.name + '</h1>');
+		
+		series.artists.forEach( function( key ) {
+			var artist = series.artist_info[ key ];
+			var pieces = artist.pieces;
 
-	// 		var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
-	// 		pieces.forEach( function( piece ) {
-	// 			var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><a href='img/" + series.tag + "/" + key + "/" + piece.tag + ".jpg' data-lightbox='" + key + "-gallery' data-title='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + "_thumb.jpg'/></a><h6 class='title'>" + piece.name + "</h6><input type='number'></div>";
-	// 			$( previews ).append( itemEl );
-	// 		});
+			var store = $( '<div class="store show artist-set" id="' + key + '"></div>' );
+			$(store).append("<h3 class='artist-name'>" + artist.name + "</h3>");
 
-	// 		$( store ).append( previews );
-	// 		$( '#' + series.tag ).append( store );
-	// 	});
-	// // });
 
-	// if ( tongdao ) {
-	// 	$('.store-item').click(function(){
-	// 		tongdao.track('poster_viewed', {
-	// 			artist: $(this).data('name'),
-	// 			poster_name: $(this).data('piece')
-	// 		});
-	// 	});
-	// }
+			var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
+			$( previews ).append("<div class='click-enlarge'>click images to englarge 点击图片放大</div>");
+			pieces.forEach( function( piece ) {
+				var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><a href='img/" + series.tag + "/" + key + "/" + piece.tag + ".jpg' data-lightbox='" + key + "-gallery' data-title='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + "_thumb.jpg'/></a><h6 class='title'>" + piece.name;
+				$( previews ).append( itemEl );
+			});
 
-	// if( window.lightbox ) {
-	// 	lightbox.option({
-	// 		resizeDuration: 200,
-	// 		imageFadeDuration: 200,
-	// 		alwaysShowNavOnTouchDevices: true,
-	// 		wrapAround: true,
-	// 		disableScrolling: true
-	//     })
-	// }
+			$( store ).append( previews );
+			$( '#' + series.tag ).append( store );
+		});
+	});
+
+	if ( window.tongdao ) {
+		$('.store-item').click(function(){
+			tongdao.track('poster_viewed', {
+				artist: $(this).data('name'),
+				poster_name: $(this).data('piece')
+			});
+		});
+	}
+
+	if( window.lightbox ) {
+		lightbox.option({
+			resizeDuration: 200,
+			imageFadeDuration: 200,
+			alwaysShowNavOnTouchDevices: true,
+			wrapAround: true,
+			disableScrolling: true
+	    })
+	}
 
 });

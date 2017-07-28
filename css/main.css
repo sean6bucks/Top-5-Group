@@ -6,35 +6,13 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
-#purchasePoster {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	z-index: 999;
-	background-color: #000;
-}
-#purchasePoster img {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 100%;
-	max-width: 100%;
-	max-height: 100%;
-	width: auto;
-	-webkit-transform: translate( -50%, -50% );
-	transform: translate( -50%, -50% );
-}
-
-
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
 
 html {
-    color: #222;
-    font-size: 1em;
+	color: #222;
+	font-size: 1em;
 }
 
 
@@ -52,13 +30,13 @@ html {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
+	background: #b3d4fc;
+	text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
+	background: #b3d4fc;
+	text-shadow: none;
 }
 
 /*
@@ -66,14 +44,19 @@ html {
  */
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
 }
 
+ul, p {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 /*
  * Remove the gap between audio, canvas, iframes,
  * images, videos and the bottom of their containers:
@@ -86,7 +69,7 @@ iframe,
 img,
 svg,
 video {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 /*
@@ -94,9 +77,9 @@ video {
  */
 
 fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
+	border: 0;
+	margin: 0;
+	padding: 0;
 }
 
 /*
@@ -104,34 +87,33 @@ fieldset {
  */
 
 textarea {
-    resize: vertical;
+	resize: vertical;
 }
 
 @font-face {
-    font-family: 'Roboto-Light';
-    src: url(Roboto-Light.ttf);
+	font-family: 'Roboto-Light';
+	src: url(Roboto-Light.ttf);
 }
 
 @font-face {
-    font-family: 'Roboto-Medium';
-    src: url(Roboto-Medium.ttf);
+	font-family: 'Roboto-Medium';
+	src: url(Roboto-Medium.ttf);
 }
 
 body { 
-    min-width: 100%; 
-    background: #fff;
-    font-family: 'Roboto-Light', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
-    font-size: 16px; 
-    line-height: 1.25; 
-    color: #000000; 
-    -webkit-font-smoothing: antialiased; 
+	min-width: 100%; 
+	background: #fff;
+	font-family: 'Roboto-Light', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
+	font-size: 16px; 
+	line-height: 1.25; 
+	color: #000000; 
+	-webkit-font-smoothing: antialiased; 
 }
 
 h1 {
 	font-size: 42px;
 	font-family: 'Roboto-Light', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
-	margin: 0;
-	margin-bottom: 50px;
+	margin: 30px 0;
 }
 
 .text-center {
@@ -142,40 +124,24 @@ h1 {
    ========================================================================== */
 
 .browserupgrade {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
 }
 
 
 /* ==========================================================================
-   Author's custom styles
+   Custom styles
    ========================================================================== */
 
 .wrapper {
-    width: 100%;
-    margin: 0 auto;
+	width: 100%;
+	margin: 50px auto 0 auto;
 }
 
-header {
-    width: 100%;
-    padding: 15px;
-    margin-top: 75px;
-    position: relative;
-}
-header * {
-    position: relative;
-}
+/* Nav Buttons */
 
-.header-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    z-index: 0;
-}
 .navigation-list {
 	margin: 0;
 	position: fixed;
@@ -206,136 +172,108 @@ header * {
 	color: #fff;
 }
 
-.qr-code {
-    position: relative;
-    width: 90%;
-    display: block;
-    max-width: 200px;
-    height: auto;
-    margin: 0 auto 15px auto;
-}
+/* Global Classes */
 
 .white-text,
 .red-text {
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 20px;
+	padding: 10px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .white-text p {
-    padding: 0 5px;
-    font-size: 14px;
-    color: #fff;
-    margin: 0;
+	padding: 0 5px;
+	font-size: 14px;
+	color: #fff;
+	margin: 0;
 }
 .red-text * {
-    color: #ff0000;
-    margin: 0;
+	color: #ff0000;
+	margin: 0;
 }
 .red-text h3 {
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1em;
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 1em;
 }
 .red-text h6 {
-    margin-top: 5px;
-    font-size: 16px;
-}
-
-.color-bar {
-    width: 100%;
-    margin-bottom: -10px;
+	margin-top: 5px;
+	font-size: 16px;
 }
 
 .section {
-    width: 100%;
-    padding: 20px 0;
-}
-
-
-.flyer-set {
-	display: block;
 	width: 100%;
-	max-width: 1000px;
-	margin: 0 auto 50px auto;
-}
-
-.flyer {
-	display: inline-block;
-	float: left;
-	width: 48%;
-	height: auto;
-	margin: 0 1%;
-}
-.flyer img {
-	width: 100%;
-	height: auto;
-}
-
-.location-map img {
-	width: 100%;
-	height: auto;
-	max-width: 800px;
+	padding: 40px 0;
 }
 
 .bold-block,
 .info-block {
-    padding: 0 4%;
-    margin-bottom: 25px;
-    font-size: 14px;
+	padding: 0 4%;
+	margin-bottom: 25px;
+	font-size: 14px;
 }
 
 .bold-block {
-    font-weight: 700;
-}
-
-.screenshot {
-    width: 100%;
-    height: auto;
-    margin: 20px 0;
-    text-align: center;
-}
-.screenshot img {
-	width: 100%;
-	margin-bottom: 5px;
-}
-.screenshot p {
-	font-size: 12px;
-	color: #666;
+	font-weight: 700;
 }
 
 .contact-block {
+	font-size: 16px;
 	text-align: center;
 }
-
-.contact-block {
-    font-size: 14px;
-    text-align: center;
+.contact-block.inline-block {
+	margin: 30px auto;
 }
+.contact-block.inline-block > * {
+	display: inline-block;
+	vertical-align: top;
+	text-align: left;
+}
+
+.contact-block p {
+	margin-bottom: 15px;
+}
+
 .contact-block a {
-    color: #1099bc;
+	color: #1099bc;
+	text-decoration: none;
 }
-
-.contact-text {
-	display: block;
+.contact-block a:hover,
+.contact-block a:focus,
+.contact-block a:active {
+	text-decoration: underline;
 }
 
 .wechat-img {
 	height: auto;
 	margin: 10px auto;
 	display: block;
-}
-
-header .wechat-img {
-	width: 100px;
-}
-footer .wechat-img {
 	width: 250px;
 }
+
+.wechat-img.sm-qr {
+	width: 100px;
+	margin: 0 0 0 15px;
+}
+
 .footer-img {
-    width: 100%;
-    height: auto;
-    margin: 30px 0 -10px 0;
+	width: 100%;
+	height: auto;
+	margin: 30px 0 -10px 0;
+}
+
+.color-bar {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	height: 10px;
+	margin-top: -10px;
+}
+.color-block {
+	float: left;
+	display: inline-block;
+	height: 10px;
+	width: 20%;
 }
 
 /*STORE*/
@@ -458,7 +396,7 @@ footer .wechat-img {
 }
 
 .store {
-	margin-bottom: 15px;
+	padding: 10px 0;
 }
 
 .store:last-child {
@@ -470,12 +408,16 @@ footer .wechat-img {
 	max-width: 1000px;
 	height: auto;
 	display: block;
-	margin: 0 auto 30px auto;
+	margin: 0 auto;
+	padding: 30px 10px;
 }
 
-.store-title {
+.store-title,
+.artist-name {
 	font-size: 24px;
-	margin: 10px 5px;
+	margin: 10px;
+}
+.store-title {
 	color: #FFF;
 }
 
@@ -483,7 +425,7 @@ footer .wechat-img {
 	width: 100%;
 	position: relative;
 	clear: both;
-	margin-bottom: 50px;
+	margin: 10px 0;
 }
 
 .store-item {
@@ -504,10 +446,14 @@ footer .wechat-img {
 
 .store-item .title {
 	height: 30px;
+	overflow: hidden;
 	font-size: 12px;
 	color: #FFF;
 	margin: 5px 10px 5px;
 	text-align: center;
+}
+.artist-set .store-item .title {
+	color: #000;
 }
 
 .store-item input {
@@ -528,6 +474,12 @@ footer .wechat-img {
 	width: 100%;
 	height: 82px;
 	background: rgba(21,36,69, 0.5);
+}
+
+.click-enlarge {
+	font-size: 12px;
+	color: #999;
+	text-align: center;
 }
 
 .info-wrapper {
@@ -618,7 +570,7 @@ footer .wechat-img {
 .success-message {
 	top: 50%;
 	-webkit-transform: translateY( -50% );
-    transform: translateY( -50% );
+	transform: translateY( -50% );
 }
 
 .success-message h2 {
@@ -699,18 +651,18 @@ footer .wechat-img {
 
 @keyframes sk-stretchdelay {
   0%, 40%, 100% { 
-    transform: scaleY(0.4);
-    -webkit-transform: scaleY(0.4);
+	transform: scaleY(0.4);
+	-webkit-transform: scaleY(0.4);
   }  20% { 
-    transform: scaleY(1.0);
-    -webkit-transform: scaleY(1.0);
+	transform: scaleY(1.0);
+	-webkit-transform: scaleY(1.0);
   }
 }
 
 @media only screen and (min-width: 360px) {
-    .red-text h3 {
-        font-size: 24px;
-    }
+	.red-text h3 {
+		font-size: 24px;
+	}
 
 }
 
@@ -761,7 +713,7 @@ footer .wechat-img {
  */
 
 .hidden {
-    display: none !important;
+	display: none !important;
 }
 
 /*
@@ -774,15 +726,15 @@ footer .wechat-img {
  */
 
 .visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap; /* 1 */
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap; /* 1 */
 }
 
 /*
@@ -793,13 +745,13 @@ footer .wechat-img {
 
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-    white-space: inherit;
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+	white-space: inherit;
 }
 
 /*
@@ -807,7 +759,7 @@ footer .wechat-img {
  */
 
 .invisible {
-    visibility: hidden;
+	visibility: hidden;
 }
 
 /*
@@ -824,12 +776,12 @@ footer .wechat-img {
 
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+	content: " "; /* 1 */
+	display: table; /* 2 */
 }
 
 .clearfix:after {
-    clear: both;
+	clear: both;
 }
 
 /* ==========================================================================
@@ -839,10 +791,10 @@ footer .wechat-img {
    ========================================================================== */
 
 @media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
+	   (-webkit-min-device-pixel-ratio: 1.25),
+	   (min-resolution: 1.25dppx),
+	   (min-resolution: 120dpi) {
+	/* Style adjustments for high resolution devices */
 }
 
 /* ==========================================================================
@@ -852,79 +804,79 @@ footer .wechat-img {
    ========================================================================== */
 
 @media print {
-    *,
-    *:before,
-    *:after,
-    p:first-letter,
-    div:first-letter,
-    blockquote:first-letter,
-    li:first-letter,
-    p:first-line,
-    div:first-line,
-    blockquote:first-line,
-    li:first-line {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
+	*,
+	*:before,
+	*:after,
+	p:first-letter,
+	div:first-letter,
+	blockquote:first-letter,
+	li:first-letter,
+	p:first-line,
+	div:first-line,
+	blockquote:first-line,
+	li:first-line {
+		background: transparent !important;
+		color: #000 !important; /* Black prints faster:
+								   http://www.sanbeiji.com/archives/953 */
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
 
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
 
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
+	a[href]:after {
+		content: " (" attr(href) ")";
+	}
 
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
 
-    /*
-     * Don't show links that are fragment identifiers,
-     * or use the `javascript:` pseudo protocol
-     */
+	/*
+	 * Don't show links that are fragment identifiers,
+	 * or use the `javascript:` pseudo protocol
+	 */
 
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-        content: "";
-    }
+	a[href^="#"]:after,
+	a[href^="javascript:"]:after {
+		content: "";
+	}
 
-    pre {
-        white-space: pre-wrap !important;
-    }
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
+	pre {
+		white-space: pre-wrap !important;
+	}
+	pre,
+	blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
 
-    /*
-     * Printing Tables:
-     * http://css-discuss.incutio.com/wiki/Printing_Tables
-     */
+	/*
+	 * Printing Tables:
+	 * http://css-discuss.incutio.com/wiki/Printing_Tables
+	 */
 
-    thead {
-        display: table-header-group;
-    }
+	thead {
+		display: table-header-group;
+	}
 
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
 
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
 
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
 }
