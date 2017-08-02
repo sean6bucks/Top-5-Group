@@ -225,9 +225,9 @@ h1 {
 	margin: 30px auto;
 }
 .contact-block.inline-block > * {
-	display: inline-block;
+	display: block;
 	vertical-align: top;
-	text-align: left;
+	text-align: center;
 }
 
 .contact-block p {
@@ -253,7 +253,7 @@ h1 {
 
 .wechat-img.sm-qr {
 	width: 100px;
-	margin: 0 0 0 15px;
+	margin: 0 auto;
 }
 
 .footer-img {
@@ -268,7 +268,15 @@ h1 {
 	left: 0;
 	height: 10px;
 	margin-top: -10px;
+	z-index: 99;
 }
+.color-bar.fixed {
+	position: fixed;
+	top: 50px;
+	margin-top: 0;
+	z-index: 98;
+}
+
 .color-block {
 	float: left;
 	display: inline-block;
@@ -411,6 +419,113 @@ h1 {
 	margin: 0 auto;
 	padding: 30px 10px;
 }
+
+.about-block {
+	position: relative;
+	width: 90%;
+	max-width: 700px;
+	margin: 15px auto 50px auto;
+	padding: 30px 5% 20px 5%;
+	border: 2px solid #000;
+	border-radius: 5px;
+}
+
+.about-block h3 {
+	position: absolute;
+	top: -25px;
+	left: 50%;
+	margin: 0;
+	margin-left: -75px;
+	padding: 10px;
+	background-color: #FFF;
+}
+.about-block p {
+	padding: 5px 0;
+}
+
+#about-more {
+	display: block;
+	padding: 5px 12px;
+	text-align: center;
+	border: 1px solid #000;
+	margin: 20px auto 0 auto;
+	background-color: #FFF;
+	border-radius: 3px;
+	cursor: pointer;
+	outline: none;
+	transition: background .2s ease;
+}
+#about-more:hover {
+	background: #E4E4E4;
+}
+
+#about-more-block {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin-right: -100%;
+	background-color: #FFF;
+	padding: 20px 10%;
+	z-index: 100;
+	transition: margin-right .4s ease;
+}
+
+#about-close {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	height: 30px;
+	width: 30px;
+	padding: 4px;
+	cursor: pointer;
+}
+
+.close-x {
+	display: block;
+	top: 50%;
+	margin-top: -1px;
+	height: 0px;
+}
+.close-x, .close-x:before, .close-x:after {
+	width: 24px;
+	background-color: #777;
+	border-radius: 2px;
+	position: absolute;
+	opacity: 1;
+	-webkit-transition: all .15s ease;
+	transition: all .15s ease; 
+}
+.close-x:before, .close-x:after {
+	height: 2px;
+	content: "";
+	display: block; 
+}
+.close-x:before {
+	top: -1px;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg); 
+}
+.close-x:after {
+	bottom: -1px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+
+
+#about-more-block h3 {
+	text-align: center;
+}
+#about-more-block p {
+	margin-bottom: 20px;
+}
+#about-more-block.show {
+	overflow: auto;
+	margin-right: 0;
+}
+
 
 .store-title,
 .artist-name {
@@ -673,14 +788,32 @@ h1 {
 		padding: 0 10px;
 	}
 
+	.about-block {
+		margin: 20px auto 80px auto;
+	}
+
+	#about-more-block {
+		padding: 50px;
+		border-left: 1px solid #999;
+		max-width: 500px;
+	}
+
 	.contact-text {
 		display: inline-block;
+	}
+	.contact-block.inline-block > * {
+		display: inline-block;
+		text-align: left;
 	}
 
 	header .wechat-img {
 		vertical-align: top;
 		margin-left: 20px;
 		display: inline-block;
+	}
+
+	.wechat-img.sm-qr {
+		margin: 0 0 0 15px;
 	}
 
 	#store-page.wrapper {

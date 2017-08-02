@@ -383,9 +383,16 @@ $(document).ready(function(){
 
 		var id = event.target.id.replace(/_nav/g, '');
 		console.log( $('#' + id) );
-		var scrollTop = $('#' + id).offset().top - 20;
+		var scrollTop = $('#' + id).offset().top - 19;
 		console.log( scrollTop );
 		$('body').animate({ scrollTop: scrollTop }, 200);
+	});
+
+	$( '#about-more' ).click( function( event ) {
+		$( '#about-more-block' ).addClass('show');
+	});
+	$( '#about-close' ).click( function( event ) {
+		$( '#about-more-block' ).removeClass('show');
 	});
 
 	// DISABLE SERIES 2 FROM MAIN PAGE UNTIL POST-SHOW
@@ -417,6 +424,21 @@ $(document).ready(function(){
 			$( store ).append( previews );
 			$( '#' + series.tag ).append( store );
 		});
+	});
+
+	$( window ).scroll( function() {
+		var scrollTop = ( $(window).scrollTop() + 20 );
+		var scroll2 = $('#series2')[0].offsetTop;
+		var scroll1 = $('#series1')[0].offsetTop;
+		if ( scrollTop > scroll2 && scrollTop < scroll1 ) {
+			$('#series2 .color-bar').addClass( 'fixed' );
+			$('#series1 .color-bar').removeClass( 'fixed' );
+		} else if ( scrollTop > scroll1 ) {
+			$('#series1 .color-bar').addClass( 'fixed' );
+			$('#series2 .color-bar').removeClass( 'fixed' );
+		} else {
+			$( '.section .color-bar' ).removeClass( 'fixed' );
+		}
 	});
 
 	if ( window.tongdao ) {
