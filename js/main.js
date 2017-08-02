@@ -378,13 +378,8 @@ $(document).ready(function(){
 
 	$('.top_nav').click(function(event){
 		if ( $(event.target).hasClass('active') ) return;
-		$( '.top_nav' ).removeClass('active');
-		$(event.target).addClass('active');
-
 		var id = event.target.id.replace(/_nav/g, '');
-		console.log( $('#' + id) );
-		var scrollTop = $('#' + id).offset().top - 19;
-		console.log( scrollTop );
+		var scrollTop = $('#' + id)[0].offsetTop - 19;
 		$('body').animate({ scrollTop: scrollTop }, 200);
 	});
 
@@ -431,12 +426,23 @@ $(document).ready(function(){
 		var scroll2 = $('#series2')[0].offsetTop;
 		var scroll1 = $('#series1')[0].offsetTop;
 		if ( scrollTop > scroll2 && scrollTop < scroll1 ) {
+			
+			$( '#series1_nav' ).removeClass('active');
+			$( '#series2_nav' ).addClass('active');
+
 			$('#series2 .color-bar').addClass( 'fixed' );
 			$('#series1 .color-bar').removeClass( 'fixed' );
+
 		} else if ( scrollTop > scroll1 ) {
+
+			$( '#series2_nav' ).removeClass('active');
+			$( '#series1_nav' ).addClass('active');
+
 			$('#series1 .color-bar').addClass( 'fixed' );
 			$('#series2 .color-bar').removeClass( 'fixed' );
 		} else {
+			$( '#series1_nav' ).removeClass('active');
+			$( '#series2_nav' ).removeClass('active');
 			$( '.section .color-bar' ).removeClass( 'fixed' );
 		}
 	});

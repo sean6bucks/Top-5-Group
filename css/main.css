@@ -167,6 +167,9 @@ h1 {
 	-webkit-transition: all .2s ease;
 	transition: all .2s ease;
 }
+.navigation-list li:first-child {
+	border-right: 1px solid #000;
+}
 .navigation-list li.active {
 	background-color: #000;
 	color: #fff;
