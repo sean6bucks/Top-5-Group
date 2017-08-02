@@ -103,7 +103,7 @@ textarea {
 body { 
 	min-width: 100%; 
 	background: #fff;
-	font-family: 'Roboto-Light', Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 'SimHei', '中易黑体',sans-serif;
+	font-family: 'Roboto-Light', Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
 	font-size: 16px; 
 	line-height: 1.25; 
 	color: #000000; 
@@ -438,7 +438,7 @@ h1 {
 	top: -25px;
 	left: 50%;
 	margin: 0;
-	margin-left: -75px;
+	margin-left: -129px;
 	padding: 10px;
 	background-color: #FFF;
 }

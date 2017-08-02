@@ -410,7 +410,7 @@ $(document).ready(function(){
 
 
 			var previews = $( '<div></div>' ).addClass( 'store-wrapper clearfix' );
-			$( previews ).append("<div class='click-enlarge'>click images to englarge 点击图片放大</div>");
+			$( previews ).append("<div class='click-enlarge'>click images to enlarge 点击图片放大</div>");
 			pieces.forEach( function( piece ) {
 				var itemEl = "<div class='store-item' data-name='" + artist.name + "' data-piece='" + piece.name + "'><a href='img/" + series.tag + "/" + key + "/" + piece.tag + ".jpg' data-lightbox='" + key + "-gallery' data-title='" + piece.name + "'><img src='img/" + series.tag + "/" + key + "/" + piece.tag + "_thumb.jpg'/></a><h6 class='title'>" + piece.name;
 				$( previews ).append( itemEl );
